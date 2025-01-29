@@ -17,4 +17,4 @@ A user friendly web application designed to upload, like, and share images.
 
 Webpage deployed to GitHub Pages
 
-- Deployment Link: file:///Users/r.mayo/Documents/Projects/se_project_spots/index.html
+- Deployment Link: https://mayo079.github.io/se_project_spots/
