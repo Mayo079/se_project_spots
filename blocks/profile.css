@@ -32,8 +32,9 @@
 }
 
 .profile__description {
-  margin: 0;
+  margin: 0 12px;
   max-width: 420px;
+  color: #212121;
   opacity: 70%;
   font-weight: 500;
   font-size: 16px;
@@ -52,8 +53,12 @@
   margin-top: auto;
   height: 16px;
   border: none;
-  background-color: #fcf5e5;
+  background-color: transparent;
   opacity: 70%;
+  color: #212121;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 500;
 }
 
 .profile__edit-btn:hover {
@@ -122,6 +127,6 @@
   }
 
   .profile__description {
-    margin-top: 6px;
+    margin-top: 0;
   }
 }

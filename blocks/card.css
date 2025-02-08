@@ -10,6 +10,12 @@
   border-radius: 8px;
 }
 
+.card__image:hover {
+  cursor: pointer;
+  transition: transform 0.3s;
+  transform: scale(0.95);
+}
+
 .card__content {
   align-items: center;
   display: flex;
@@ -17,8 +23,9 @@
 }
 
 .card__title {
-  font-size: 16px;
-  line-height: 16px;
+  margin: 0;
+  font-size: 20px;
+  line-height: 24px;
   font-weight: 500;
   color: #212121;
   text-overflow: ellipsis;
