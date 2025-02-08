@@ -21,8 +21,8 @@
   margin: 0 0 12px;
   max-width: 420px;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 32px;
+  line-height: 32px;
   text-overflow: ellipsis;
   overflow: hidden;
   line-clamp: 3;
@@ -101,6 +101,9 @@
 
   .profile__name {
     margin-bottom: 6px;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 500;
   }
 
   .profile__column {
