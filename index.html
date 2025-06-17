@@ -107,6 +107,84 @@
       <footer class="footer">
         <p class="footer__text">2025 &copy; Spots</p>
       </footer>
+      <div class="modal modal_is-opened">
+        <div class="modal__content">
+          <button type="button" class="modal__close-btn"></button>
+          <h2 class="modal__title">Edit Profile</h2>
+          <form class="modal__form">
+            <label for="profile-name-input" class="modal__label">
+              Name
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="modal__input"
+                placeholder="Enter your name"
+              />
+            </label>
+            <label for="profile-description-input" class="modal__label">
+              Description
+              <input
+                type="text"
+                id="description"
+                name="description"
+                class="modal__input"
+                placeholder="Enter your description"
+              />
+            </label>
+            <!-- <label for="profile-avatar-input" class="modal__label">
+              <input
+                type="url"
+                id="avatar"
+                name="avatar"
+                class="modal__input"
+                placeholder="Enter the link to your avatar"
+              />
+            </label> -->
+            <button type="submit" class="modal__save-btn">Save</button>
+            <!-- <button type="button" class="modal__cancel-btn">Cancel</button> -->
+          </form>
+        </div>
+      </div>
+      <div class="modal modal_is-opened">
+        <div class="modal__content">
+          <button type="button" class="modal__close-btn"></button>
+          <h2 class="modal__title">New Post</h2>
+          <form class="modal__form">
+            <label for="card-image-input" class="modal__label">
+              Image link
+              <input
+                type="url"
+                id="card-image-input"
+                name="name"
+                class="modal__input"
+                placeholder="Place a link to your image"
+              />
+            </label>
+            <label for="card-description-input" class="modal__label">
+              Caption
+              <input
+                type="text"
+                id="description"
+                name="description"
+                class="modal__input"
+                placeholder="Type your caption"
+              />
+            </label>
+            <!-- <label for="profile-avatar-input" class="modal__label">
+              <input
+                type="url"
+                id="avatar"
+                name="avatar"
+                class="modal__input"
+                placeholder="Enter the link to your avatar"
+              />
+            </label> -->
+            <button type="submit" class="modal__save-btn">Save</button>
+            <!-- <button type="button" class="modal__cancel-btn">Cancel</button> -->
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>
