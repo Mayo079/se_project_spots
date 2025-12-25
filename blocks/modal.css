@@ -1,5 +1,6 @@
 .modal {
   visibility: hidden;
+  transition: visibility 0s linear 0.2s, opacity 0.2s linear;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -13,6 +14,8 @@
 
 .modal.is-opened {
   visibility: visible;
+  transition-delay: 0s;
+  opacity: 1;
 }
 
 .modal__content {
@@ -35,7 +38,6 @@
   background-color: transparent;
   opacity: 70%;
   cursor: pointer;
-  transition: opacity 0.3s;
 }
 
 .modal__title {
