@@ -27,7 +27,6 @@
   line-height: 32px;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-clamp: 3;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -43,7 +42,6 @@
   line-height: 16px;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-clamp: 3;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -85,7 +83,7 @@
   gap: 8px;
   font-weight: 500;
   font-size: 16px;
-  line-height: 1px;
+  line-height: 16px;
   white-space: nowrap;
 }
 

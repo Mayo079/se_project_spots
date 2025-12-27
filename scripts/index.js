@@ -12,10 +12,10 @@ const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn =
   newPostModal && newPostModal.querySelector(".modal__close-btn");
-const profileNameI = document.querySelector(".profile__name");
-const profileDescriptionI = document.querySelector(".profile__description");
-const cardTitleI = document.querySelector(".card__title");
-const cardImageI = document.querySelector(".card__image");
+const profileNameEl = document.querySelector(".profile__name");
+const profileDescriptionEl = document.querySelector(".profile__description");
+const cardTitleEl = document.querySelector(".card__title");
+const cardImageEl = document.querySelector(".card__image");
 
 function escapeHtml(str) {
   return String(str)
@@ -26,34 +26,42 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-if (editProfileBtn && editProfileModal) {
-  editProfileBtn.addEventListener("click", function () {
-    editProfileModal.classList.add("is-opened");
-  });
+function openModal(modal) {
+  if (modal) {
+    modal.classList.add("is-opened");
+  }
 }
 
-if (editProfileCloseBtn && editProfileModal) {
-  editProfileCloseBtn.addEventListener("click", function () {
-    editProfileModal.classList.remove("is-opened");
-  });
+function closeModal(modal) {
+  if (modal) {
+    modal.classList.remove("is-opened");
+  }
 }
+
+editProfileBtn.addEventListener("click", function () {
+  openModal(editProfileModal);
+});
+
+editProfileCloseBtn.addEventListener("click", function () {
+  closeModal(editProfileModal);
+});
 
 document.querySelectorAll(".modal__close-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
     const modal = btn.closest(".modal");
-    if (modal) modal.classList.remove("is-opened");
+    closeModal(modal);
   });
 });
 
 if (newPostBtn && newPostModal) {
   newPostBtn.addEventListener("click", function () {
-    newPostModal.classList.add("is-opened");
+    openModal(newPostModal);
   });
 }
 
 if (newPostCloseBtn && newPostModal) {
   newPostCloseBtn.addEventListener("click", function () {
-    newPostModal.classList.remove("is-opened");
+    closeModal(newPostModal);
   });
 }
 
@@ -62,9 +70,9 @@ if (editProfileModal) {
     .querySelector(".modal__form")
     .addEventListener("submit", function (event) {
       event.preventDefault();
-      profileNameI.textContent = editProfileNameInput.value;
-      profileDescriptionI.textContent = editProfileDescriptionInput.value;
-      editProfileModal.classList.remove("is-opened");
+      profileNameEl.textContent = editProfileNameInput.value;
+      profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+      closeModal(editProfileModal);
     });
 }
 

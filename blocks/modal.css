@@ -1,6 +1,7 @@
 .modal {
   visibility: hidden;
-  transition: visibility 0s linear 0.2s, opacity 0.2s linear;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s ease;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -14,14 +15,15 @@
 
 .modal.is-opened {
   visibility: visible;
-  transition-delay: 0s;
   opacity: 1;
+  transition: opacity 0.3s ease, visibility 0s 0.3s;
 }
 
 .modal__content {
   max-width: 730px;
   width: 100%;
   border-radius: 8px;
+  box-sizing: border-box;
   padding: 32px 50px;
   position: relative;
   background-color: #fff;
@@ -38,6 +40,11 @@
   background-color: transparent;
   opacity: 70%;
   cursor: pointer;
+}
+
+.modal__close-btn:hover {
+  opacity: 100%;
+  transition: opacity 0.3s;
 }
 
 .modal__title {
@@ -59,7 +66,8 @@
 .modal__input {
   display: block;
   margin: 8px 0 0;
-  width: 95%;
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px 16px;
   border: 1px solid #2121214d;
   border-radius: 8px;
@@ -114,9 +122,10 @@
   }
 
   .modal__input {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 14px;
-    width: 90%;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .modal__label {
