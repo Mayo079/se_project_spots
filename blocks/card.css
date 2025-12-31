@@ -37,8 +37,9 @@
 
 .card__like-btn {
   background-image: url(../images/like.svg);
-  width: 23px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
   border: none;
   background-color: transparent;
   opacity: 40%;
