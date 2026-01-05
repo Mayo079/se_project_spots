@@ -1,7 +1,5 @@
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileCloseBtn =
-  editProfileModal && editProfileModal.querySelector(".modal__close-btn");
 const editProfileNameInput = editProfileModal?.querySelector(
   "#profile-name-input"
 );
@@ -10,28 +8,23 @@ const editProfileDescriptionInput = editProfileModal?.querySelector(
 );
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
-const newPostCloseBtn =
-  newPostModal && newPostModal.querySelector(".modal__close-btn");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
-const cardTitleEl = document.querySelector(".card__title");
-const cardImageEl = document.querySelector(".card__image");
 const titleInput = newPostModal.querySelector("#card-description-input");
 const imageInput = newPostModal.querySelector("#card-image-input");
 
 const OPEN_CLASS = "is-opened";
 
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
 function openModal(modal, opener) {
   if (!modal) return;
+
+  if (modal === editProfileModal) {
+    if (editProfileNameInput)
+      editProfileNameInput.value = profileNameEl?.textContent || "";
+    if (editProfileDescriptionInput)
+      editProfileDescriptionInput.value =
+        profileDescriptionEl?.textContent || "";
+  }
   const form = modal.querySelector(".modal__form");
   if (form) {
     const inputs = form.querySelectorAll("input, textarea, select");
