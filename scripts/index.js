@@ -170,40 +170,8 @@ if (newPostModal) {
       const title = titleInput && titleInput.value.trim();
       const imageUrl = imageInput && imageInput.value.trim();
 
-      if (!imageUrl) {
-        alert("Please provide an image URL for the new post.");
-        return;
-      }
+      console.log("New post submitted:", { title, imageUrl });
 
-      const list = document.querySelector(".cards__list");
-      if (!list) return;
-
-      const li = document.createElement("li");
-      li.className = "card";
-
-      const imgEl = document.createElement("img");
-      imgEl.className = "card__image";
-      imgEl.src = imageUrl;
-      imgEl.alt = title || "New post";
-
-      const contentDiv = document.createElement("div");
-      contentDiv.className = "card__content";
-
-      const h2 = document.createElement("h2");
-      h2.className = "card__title";
-      h2.textContent = title || "New post";
-
-      const likeBtn = document.createElement("button");
-      likeBtn.type = "button";
-      likeBtn.className = "card__like-btn";
-
-      contentDiv.appendChild(h2);
-      contentDiv.appendChild(likeBtn);
-
-      li.appendChild(imgEl);
-      li.appendChild(contentDiv);
-
-      list.prepend(li);
       delete newPostModal._initialFormState;
       closeModal(newPostModal);
       newPostForm.reset();
