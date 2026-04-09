@@ -1,10 +1,37 @@
+const initialCards = [
+  {
+    name: "Stright of Hormuz",
+    link: "https://Stright-of-Hormuz.jpg",
+  },
+  {
+    name: "California fire aftermath",
+    link: "https://California-fire-aftermath.jpg",
+  },
+  {
+    name: "Outerspace POV",
+    link: "https://Outerspace-POV.jpg",
+  },
+  {
+    name: "Oil refinary",
+    link: "https://Oil-refinary.jpg",
+  },
+  {
+    name: "Artimus II mission to the moon",
+    link: "https://Artimus-II-mission-to-the-moon.jpg",
+  },
+  {
+    name: "Air force fighter jet",
+    link: "https://Air-force-fighter-jet.jpg",
+  },
+];
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileNameInput = editProfileModal?.querySelector(
-  "#profile-name-input"
+  "#profile-name-input",
 );
 const editProfileDescriptionInput = editProfileModal?.querySelector(
-  "#profile-description-input"
+  "#profile-description-input",
 );
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
@@ -38,7 +65,7 @@ function openModal(modal, opener) {
   modal._lastOpener = opener || null;
   modal.classList.add(OPEN_CLASS);
   const firstControl = modal.querySelector(
-    ".modal__form input, .modal__form textarea, .modal__form select"
+    ".modal__form input, .modal__form textarea, .modal__form select",
   );
   if (firstControl) firstControl.focus();
 }
@@ -60,13 +87,13 @@ document.addEventListener("click", (event) => {
 
 if (editProfileBtn && !editProfileBtn.hasAttribute("data-modal")) {
   editProfileBtn.addEventListener("click", () =>
-    openModal(editProfileModal, editProfileBtn)
+    openModal(editProfileModal, editProfileBtn),
   );
 }
 
 if (newPostBtn && newPostModal && !newPostBtn.hasAttribute("data-modal")) {
   newPostBtn.addEventListener("click", () =>
-    openModal(newPostModal, newPostBtn)
+    openModal(newPostModal, newPostBtn),
   );
 }
 
@@ -115,12 +142,12 @@ document.addEventListener("keydown", (event) => {
     const focusableSelectors =
       'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable]';
     const focusable = Array.from(
-      modal.querySelectorAll(focusableSelectors)
+      modal.querySelectorAll(focusableSelectors),
     ).filter(
       (el) =>
         el.offsetWidth > 0 ||
         el.offsetHeight > 0 ||
-        el === document.activeElement
+        el === document.activeElement,
     );
 
     if (focusable.length === 0) {
@@ -179,3 +206,8 @@ if (newPostModal) {
     });
   }
 }
+
+initialCards.forEach(function (card) {
+  console.log(card.name);
+  console.log(card.link);
+});
