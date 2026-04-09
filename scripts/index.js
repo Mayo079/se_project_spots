@@ -1,3 +1,7 @@
+const {
+  editProfileDescriptionInput,
+} = require("./editProfileDescriptionInput");
+
 const initialCards = [
   {
     name: "Stright of Hormuz",
@@ -26,12 +30,12 @@ const initialCards = [
 ];
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
-const editProfileModal = document.querySelector("#edit-profile-modal");
+export const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileNameInput =
   editProfileModal && editProfileModal.querySelector("#profile-name-input");
-const editProfileDescriptionInput = editProfileModal?.querySelector(
-  "#profile-description-input",
-);
+const editProfileDescriptionInput =
+  editProfileModal &&
+  editProfileModal.querySelector("#profile-description-input");
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const profileNameEl = document.querySelector(".profile__name");
