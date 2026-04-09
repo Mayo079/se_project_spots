@@ -30,7 +30,7 @@ const initialCards = [
 ];
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
-export const editProfileModal = document.querySelector("#edit-profile-modal");
+const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileNameInput =
   editProfileModal && editProfileModal.querySelector("#profile-name-input");
 const editProfileDescriptionInput =
