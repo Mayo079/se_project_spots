@@ -50,10 +50,11 @@ function openModal(modal, opener) {
 
   if (modal === editProfileModal) {
     if (editProfileNameInput)
-      editProfileNameInput.value = profileNameEl?.textContent || "";
+      editProfileNameInput.value =
+        (profileNameEl && profileNameEl.textContent) || "";
     if (editProfileDescriptionInput)
       editProfileDescriptionInput.value =
-        profileDescriptionEl?.textContent || "";
+        (profileDescriptionEl && profileDescriptionEl.textContent) || "";
   }
   const form = modal.querySelector(".modal__form");
   if (form) {
@@ -187,7 +188,7 @@ if (editProfileModal) {
       profileDescriptionEl.textContent = editProfileDescriptionInput.value;
       delete editProfileModal._initialFormState;
       closeModal(editProfileModal);
-      editProfileModal._lastOpener?.focus();
+      if (editProfileModal._lastOpener) editProfileModal._lastOpener.focus();
     });
 }
 
@@ -205,7 +206,7 @@ if (newPostModal) {
       delete newPostModal._initialFormState;
       closeModal(newPostModal);
       newPostForm.reset();
-      newPostModal._lastOpener?.focus();
+      if (newPostModal._lastOpener) newPostModal._lastOpener.focus();
     });
   }
 }
