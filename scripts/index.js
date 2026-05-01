@@ -27,21 +27,23 @@ const initialCards = [
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileNameInput = editProfileModal?.querySelector(
-  "#profile-name-input",
-);
-const editProfileDescriptionInput = editProfileModal?.querySelector(
-  "#profile-description-input",
-);
+const editProfileNameInput =
+  editProfileModal && editProfileModal.querySelector("#profile-name-input");
+const editProfileDescriptionInput =
+  editProfileModal &&
+  editProfileModal.querySelector("#profile-description-input");
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
-const titleInput = newPostModal?.querySelector("#card-description-input");
-const imageInput = newPostModal?.querySelector("#card-image-input");
+const titleInput =
+  newPostModal && newPostModal.querySelector("#card-description-input");
+const imageInput =
+  newPostModal && newPostModal.querySelector("#card-image-input");
 const viewerModal = document.querySelector("#viewer-modal");
-const viewerImage = viewerModal?.querySelector("#viewer-image");
-const viewerCaption = viewerModal?.querySelector("#viewer-caption");
+const viewerImage = viewerModal && viewerModal.querySelector("#viewer-image");
+const viewerCaption =
+  viewerModal && viewerModal.querySelector("#viewer-caption");
 
 const FORM_FIELD_SELECTORS = "input, textarea, select";
 const FOCUSABLE_SELECTORS =
@@ -86,6 +88,11 @@ function openModal(modal, opener) {
   saveFormState(modal);
 
   modal._lastOpener = opener || null;
+
+  const bgRegions = document.querySelectorAll("header, main, footer");
+  bgRegions.forEach((el) => el.setAttribute("aria-hidden", "true"));
+
+  modal.setAttribute("aria-hidden", "false");
   modal.classList.add(OPEN_CLASS);
   focusFirstControl(modal);
 }
@@ -93,6 +100,9 @@ function openModal(modal, opener) {
 function closeModal(modal) {
   if (!modal) return;
   modal.classList.remove(OPEN_CLASS);
+  modal.setAttribute("aria-hidden", "true");
+  const bgRegions = document.querySelectorAll("header, main, footer");
+  bgRegions.forEach((el) => el.setAttribute("aria-hidden", "false"));
 }
 
 document.addEventListener("click", (event) => {
@@ -127,7 +137,6 @@ document.addEventListener("click", (event) => {
   if (modal._lastOpener) modal._lastOpener.focus();
 });
 
-// Top-level click handler for opening image viewer from any card (registered once)
 document.addEventListener("click", (event) => {
   if (event.target.closest(".modal")) return;
   if (event.target.closest(".card__like-btn")) return;
@@ -142,8 +151,8 @@ document.addEventListener("click", (event) => {
     viewerImage.alt = img.alt || "";
   }
   if (viewerCaption) {
-    viewerCaption.textContent =
-      card.querySelector(".card__title")?.textContent || "";
+    const titleEl = card.querySelector(".card__title");
+    viewerCaption.textContent = (titleEl && titleEl.textContent) || "";
   }
 
   openModal(viewerModal, card);
@@ -236,8 +245,6 @@ if (newPostModal) {
 
       const title = titleInput && titleInput.value.trim();
       const imageUrl = imageInput && imageInput.value.trim();
-
-      // (click handler moved to top-level to avoid registering multiple times)
 
       console.log("New post submitted:", { title, imageUrl });
 

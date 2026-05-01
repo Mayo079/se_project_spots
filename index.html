@@ -25,11 +25,19 @@
           <div class="profile__column">
             <h1 class="profile__name">Sylas Alexander</h1>
             <p class="profile__description">World Analyst</p>
-            <button type="button" class="profile__edit-btn">
+            <button
+              type="button"
+              class="profile__edit-btn"
+              data-modal="edit-profile-modal"
+            >
               <img src="./images/pencil.svg" alt="Pencil Icon" />Edit Profile
             </button>
           </div>
-          <button type="button" class="profile__add-btn">
+          <button
+            type="button"
+            class="profile__add-btn"
+            data-modal="new-post-modal"
+          >
             <img src="./images/plus.svg" alt="Plus Icon" /> New Post
           </button>
         </section>
@@ -108,9 +116,14 @@
         <p class="footer__text">2025 &copy; Rashad Mayo</p>
       </footer>
       <div class="modal" id="edit-profile-modal">
-        <div class="modal__content">
+        <div
+          class="modal__content"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="edit-profile-title"
+        >
           <button type="button" class="modal__close-btn"></button>
-          <h2 class="modal__title">Edit Profile</h2>
+          <h2 id="edit-profile-title" class="modal__title">Edit Profile</h2>
           <form class="modal__form">
             <label for="profile-name-input" class="modal__label">
               Name
@@ -147,9 +160,14 @@
         </div>
       </div>
       <div class="modal" id="new-post-modal">
-        <div class="modal__content">
+        <div
+          class="modal__content"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="new-post-title"
+        >
           <button type="button" class="modal__close-btn"></button>
-          <h2 class="modal__title">New Post</h2>
+          <h2 id="new-post-title" class="modal__title">New Post</h2>
           <form class="modal__form">
             <label for="card-image-input" class="modal__label">
               Image link
@@ -187,10 +205,17 @@
       </div>
     </div>
     <div class="modal" id="viewer-modal">
-      <div class="modal__content modal__content--viewer">
+      <div
+        class="modal__content modal__content--viewer"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Image viewer"
+      >
         <button type="button" class="modal__close-btn"></button>
-        <img id="viewer-image" class="viewer__image" src="" alt="" />
-        <p id="viewer-caption" class="viewer__caption"></p>
+        <div class="viewer">
+          <img class="viewer__image" src="" alt="" id="viewer-image" />
+          <p class="viewer__caption" id="viewer-caption"></p>
+        </div>
       </div>
     </div>
     <script src="./scripts/index.js"></script>
