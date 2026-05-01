@@ -27,17 +27,45 @@ const initialCards = [
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileNameInput =
-  editProfileModal && editProfileModal.querySelector("#profile-name-input");
-const editProfileDescriptionInput =
-  editProfileModal &&
-  editProfileModal.querySelector("#profile-description-input");
+const editProfileNameInput = editProfileModal?.querySelector(
+  "#profile-name-input",
+);
+const editProfileDescriptionInput = editProfileModal?.querySelector(
+  "#profile-description-input",
+);
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
-const titleInput = newPostModal.querySelector("#card-description-input");
-const imageInput = newPostModal.querySelector("#card-image-input");
+const titleInput = newPostModal?.querySelector("#card-description-input");
+const imageInput = newPostModal?.querySelector("#card-image-input");
+
+const FORM_FIELD_SELECTORS = "input, textarea, select";
+const FOCUSABLE_SELECTORS =
+  'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable]';
+
+function getFormState(form) {
+  const inputs = form.querySelectorAll(FORM_FIELD_SELECTORS);
+  const state = {};
+  inputs.forEach((inp) => {
+    if (inp.name) state[inp.name] = inp.value;
+  });
+  return state;
+}
+
+function saveFormState(modal) {
+  if (!modal) return;
+  const form = modal.querySelector(".modal__form");
+  if (!form) return;
+  modal._initialFormState = getFormState(form);
+}
+
+function focusFirstControl(modal) {
+  const firstControl = modal.querySelector(
+    ".modal__form input, .modal__form textarea, .modal__form select",
+  );
+  if (firstControl) firstControl.focus();
+}
 
 const OPEN_CLASS = "is-opened";
 
@@ -52,22 +80,11 @@ function openModal(modal, opener) {
       editProfileDescriptionInput.value =
         (profileDescriptionEl && profileDescriptionEl.textContent) || "";
   }
-  const form = modal.querySelector(".modal__form");
-  if (form) {
-    const inputs = form.querySelectorAll("input, textarea, select");
-    const state = {};
-    inputs.forEach((inp) => {
-      if (inp.name) state[inp.name] = inp.value;
-    });
-    modal._initialFormState = state;
-  }
+  saveFormState(modal);
 
   modal._lastOpener = opener || null;
   modal.classList.add(OPEN_CLASS);
-  const firstControl = modal.querySelector(
-    ".modal__form input, .modal__form textarea, .modal__form select",
-  );
-  if (firstControl) firstControl.focus();
+  focusFirstControl(modal);
 }
 
 function closeModal(modal) {
@@ -112,7 +129,7 @@ function restoreOrResetForm(modal) {
   const form = modal.querySelector(".modal__form");
   if (!form) return;
   if (modal._initialFormState) {
-    const inputs = form.querySelectorAll("input, textarea, select");
+    const inputs = form.querySelectorAll(FORM_FIELD_SELECTORS);
     inputs.forEach((inp) => {
       if (
         inp.name &&
@@ -139,10 +156,8 @@ document.addEventListener("keydown", (event) => {
   }
 
   if (event.key === "Tab") {
-    const focusableSelectors =
-      'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable]';
     const focusable = Array.from(
-      modal.querySelectorAll(focusableSelectors),
+      modal.querySelectorAll(FOCUSABLE_SELECTORS),
     ).filter(
       (el) =>
         el.offsetWidth > 0 ||
