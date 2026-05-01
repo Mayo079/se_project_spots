@@ -1,7 +1,3 @@
-const {
-  editProfileDescriptionInput,
-} = require("./editProfileDescriptionInput");
-
 const initialCards = [
   {
     name: "Stright of Hormuz",
