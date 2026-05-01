@@ -39,6 +39,9 @@ const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 const titleInput = newPostModal?.querySelector("#card-description-input");
 const imageInput = newPostModal?.querySelector("#card-image-input");
+const viewerModal = document.querySelector("#viewer-modal");
+const viewerImage = viewerModal?.querySelector("#viewer-image");
+const viewerCaption = viewerModal?.querySelector("#viewer-caption");
 
 const FORM_FIELD_SELECTORS = "input, textarea, select";
 const FOCUSABLE_SELECTORS =
@@ -122,6 +125,28 @@ document.addEventListener("click", (event) => {
   restoreOrResetForm(modal);
   closeModal(modal);
   if (modal._lastOpener) modal._lastOpener.focus();
+});
+
+// Top-level click handler for opening image viewer from any card (registered once)
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".modal")) return;
+  if (event.target.closest(".card__like-btn")) return;
+
+  const card = event.target.closest(".card");
+  if (!card) return;
+  const img = card.querySelector(".card__image");
+  if (!img || !viewerModal) return;
+
+  if (viewerImage) {
+    viewerImage.src = img.src;
+    viewerImage.alt = img.alt || "";
+  }
+  if (viewerCaption) {
+    viewerCaption.textContent =
+      card.querySelector(".card__title")?.textContent || "";
+  }
+
+  openModal(viewerModal, card);
 });
 
 function restoreOrResetForm(modal) {
@@ -212,6 +237,8 @@ if (newPostModal) {
       const title = titleInput && titleInput.value.trim();
       const imageUrl = imageInput && imageInput.value.trim();
 
+      // (click handler moved to top-level to avoid registering multiple times)
+
       console.log("New post submitted:", { title, imageUrl });
 
       delete newPostModal._initialFormState;
@@ -226,3 +253,8 @@ initialCards.forEach(function (card) {
   console.log(card.name);
   console.log(card.link);
 });
+
+if (typeof window !== "undefined") {
+  window.openModal = openModal;
+  window.closeModal = closeModal;
+}
